@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Do we have here?</title>
+</head>
+<body>
+    <button id="btn"> XMLHttpRequest</button>
+    <button id="btn1"> axios</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script>
+        document.getElementById("btn").addEventListener("onclick",loadText());
+function loadText(){
+// creat XHR object
+let xhr = new XMLHttpRequest();
+// open /type/url/async
+xhr.open('GET','https://www.randomuser.me/api',true)
+// ready status
+xhr.onload=function(){
+    console.log("inside xmlhttprequets "+this.responseText);
+}
+// error handeler
+xhr.onerror=function(){
+    console.log("request error")
+}
+xhr.send();
+}
+document.getElementById("btn1").addEventListener("onclick",loadText1());
+function loadText1(){
+    axios
+    .get('https://www.randomuser.me/api')
+    .then(res => console.log("inside axios "+ res))
+    .catch(err => console.error("inside axios "+err));
+}
+    </script>
+   
+</body>
+</html>
